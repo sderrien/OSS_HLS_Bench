@@ -134,7 +134,10 @@ bool ModuloScheduler::check_for_legup_label(BasicBlock *bb) {
         PipelineTclInfo.user_II = false;
         PipelineTclInfo.II = 0;
         PipelineTclInfo.ignoreMemDeps = false;
-        PipelineTclInfo.label = "nolabel";
+        // PIPELINE_ALL selects loops without a Tcl label list, but preserving a
+        // source marker keeps pipeline reports attributable to the C loop.
+        loopLabel = get_legup_label(bb);
+        PipelineTclInfo.label = loopLabel.empty() ? "nolabel" : loopLabel;
         return true;
     }
 
@@ -906,16 +909,25 @@ void ModuloScheduler::findLoopCarriedMemoryAccesses(
         if (!GEP)
             continue;
 
-        Value *offset = GEP->getOperand(2);
-
         MEM_ACCESS access;
         access.I = I;
         access.ram = ram;
 
         int indexOffset = 0;
-        if (findInductionOffset(offset, ram,
-                                loop->getCanonicalInductionVariable(), memtype,
-                                &indexOffset)) {
+        bool foundInductionOffset = false;
+        // GEPs over aggregate arrays have a leading zero index, while GEPs over
+        // pointer arguments have only the dynamic index. Inspect every index so
+        // both legal LLVM forms are handled without assuming operand two exists.
+        for (unsigned index = 0; index < GEP->getNumIndices(); ++index) {
+            if (findInductionOffset(GEP->getOperand(index + 1), ram,
+                                    loop->getCanonicalInductionVariable(), memtype,
+                                    &indexOffset)) {
+                foundInductionOffset = true;
+                break;
+            }
+        }
+
+        if (foundInductionOffset) {
             // found an offset to the induction variable
             access.type = MEM_ACCESS::InductionOffset;
             access.offset = indexOffset;

@@ -245,6 +245,13 @@ llvm_regcomp(llvm_regex_t *preg, const char *pattern, int cflags)
 #endif
 
 	/* win or lose, we're done */
+	g->pattern = (char *)malloc(len + 1);
+	if (g->pattern == NULL) {
+		llvm_regfree(preg);
+		return(REG_ESPACE);
+	}
+	(void)memcpy(g->pattern, pattern, len);
+	g->pattern[len] = '\0';
 	if (p->error != 0)	/* lose */
 		llvm_regfree(preg);
 	return(p->error);

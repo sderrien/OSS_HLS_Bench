@@ -38,6 +38,7 @@
 /*
  * internals of regex_t
  */
+#include "regutils.h"
 #define	MAGIC1	((('r'^0200)<<8) | 'e')
 
 /*
@@ -148,6 +149,7 @@ struct re_guts {
 	size_t nsub;		/* copy of re_nsub */
 	int backrefs;		/* does it use back references? */
 	sopno nplus;		/* how deep does it nest +s? */
+	char *pattern;
 	/* catspace must be last */
 	cat_t catspace[1];	/* actually [NC] */
 };

@@ -68,5 +68,7 @@ llvm_regfree(llvm_regex_t *preg)
 		free((char *)g->setbits);
 	if (g->must != NULL)
 		free(g->must);
+	if (g->pattern != NULL)
+		free(g->pattern);
 	free((char *)g);
 }

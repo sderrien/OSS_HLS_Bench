@@ -344,6 +344,14 @@ bool LegupPass::runOnModule(Module &M) {
 }
 
 void LegupPass::pipelineLabelSanityCheck(Module &M) {
+	// PIPELINE_ALL deliberately selects eligible loops without adding entries to
+	// the explicit Tcl loop-pipeline map. Comparing those automatic selections
+	// against numLoopPipelines() would therefore report every valid automatic
+	// pipeline as an error and make llc fail after it has generated RTL.
+	if (LEGUP_CONFIG->getParameterInt("PIPELINE_ALL")) {
+		return;
+	}
+
 	std::set<std::string> pipelinedLabels;
 
     for (Module::iterator F = M.begin(), E = M.end(); F != E; ++F) {
@@ -493,4 +501,3 @@ static RegisterPass<MinimizeBitwidth> X("legup-minimize-bitwidth",
         "Pre-Link Time Optimization Pass to shrink integer bitwidth to arbritrary precision");
 
 } // End legup namespace
-

@@ -5417,7 +5417,12 @@ RTLSignal* GenerateRTL::getOpNonConstant(State *state, Value *op) {
 
 	std::string wire = verilogName(op);
 	std::string reg = wire + "_reg";
-	if (state->isWaitingForPipeline() && isPipelined(op)) {
+	Instruction *pipelineInstruction = dyn_cast<Instruction>(op);
+	// Pipeline transport registers are local to their producing loop. Values
+	// from an earlier pipelined loop must use their normal cross-state register.
+	if (state->isWaitingForPipeline() && isPipelined(op)
+			&& pipelineInstruction
+			&& pipelineInstruction->getParent() == state->getBasicBlock()) {
 
 		BasicBlock *BB = state->getBasicBlock();
 		assert(BB);
@@ -5435,7 +5440,15 @@ RTLSignal* GenerateRTL::getOpNonConstant(State *state, Value *op) {
 
 		} else {
 			RTLSignal *sig = getPipelineSignal(op, this->time);
-			//errs() << "time: " << this->time << " op: " << *op << "\n";
+			if (!sig) {
+				errs() << "ERROR: missing LegUp pipeline transport signal"
+				       << " label=" << label
+				       << " state=" << state->getName()
+				       << " basic_block=" << getLabel(BB)
+				       << " stage=" << this->stage
+				       << " time=" << this->time << "\n";
+				errs() << "Pipeline value: " << *op << "\n";
+			}
 			assert(sig);
 			return sig;
 		}
