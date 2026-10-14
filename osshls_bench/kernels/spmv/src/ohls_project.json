@@ -1,0 +1,10 @@
+{
+  "project_name": "spmv",
+  "top_function": "spmv",
+  "kernel": "spmv.c",
+  "testbench": [
+    "main.c",
+    "spmv_trace_stubs.c"
+  ],
+  "target_clock_period_ps": 8000
+}

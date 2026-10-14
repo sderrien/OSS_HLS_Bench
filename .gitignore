@@ -1,0 +1,52 @@
+# Python and local tooling caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.Xil/
+
+# Centralized benchmark artifacts
+/artifacts/*
+!/artifacts/.gitkeep
+
+# Legacy artifact locations kept for compatibility with older scripts
+/osshls_bench/.legup_benchmarks/
+/osshls_bench/.openhls_benchmarks/
+/osshls_bench/.openhls_benchmarks_ohls/
+/osshls_bench/.panda_benchmarks/
+/osshls_bench/.dynamatic_benchmarks/
+/osshls_bench/.vitis_benchmarks/
+/osshls_bench/runs/
+/osshls_bench/reports/
+
+# Per-kernel tool outputs belong under artifacts/tool-work, never beside source.
+/osshls_bench/kernels/bambu_qor.json
+/osshls_bench/kernels/bambu_report.json
+/osshls_bench/kernels/*/.Xil/
+/osshls_bench/kernels/*/.logs/
+/osshls_bench/kernels/*/.bambu_panda_sources/
+/osshls_bench/kernels/*/bambu_panda/
+/osshls_bench/kernels/*/bambu_panda_sim/
+/osshls_bench/kernels/*/HLS_output/
+/osshls_bench/kernels/*/dynamatic/
+/osshls_bench/kernels/*/legup/
+/osshls_bench/kernels/*/panda/
+/osshls_bench/kernels/*/vitis/
+/osshls_bench/kernels/*/*.cache/
+/osshls_bench/kernels/*/*.hw/
+/osshls_bench/kernels/*/*.ip_user_files/
+/osshls_bench/kernels/*/*.xpr
+/osshls_bench/kernels/*/bambu_results_*.xml
+/osshls_bench/kernels/*/clockInfo.txt
+/osshls_bench/kernels/*/results.txt
+/osshls_bench/kernels/*/simulate_*.sh
+/osshls_bench/kernels/*/synthesize_Synthesis_*.sh
+/osshls_bench/kernels/*/*.v
+
+# Tool-generated logs and simulator files
+*.jou
+*.log
+*.backup.jou
+*.backup.log
+*.mem
+*.vcd
+*.fst

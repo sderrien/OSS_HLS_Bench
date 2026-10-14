@@ -1,0 +1,10 @@
+{
+  "project_name": "mnist_cnn",
+  "top_function": "mnist_cnn",
+  "kernel": "mnist_cnn_kernel.c",
+  "testbench": [
+    "main_mnist_cnn.c",
+    "mnist_cnn_trace_stubs.c"
+  ],
+  "target_clock_period_ps": 8000
+}

@@ -1,0 +1,9 @@
+{
+  "project_name": "machsuite_rsa",
+  "top_function": "rsa_encrypt",
+  "kernel": "rsa.c",
+  "testbench": [
+    "main.c"
+  ],
+  "target_clock_period_ps": 8000
+}

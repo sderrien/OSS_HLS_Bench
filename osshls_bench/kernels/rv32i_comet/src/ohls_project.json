@@ -1,0 +1,13 @@
+{
+  "project_name": "rv32i-comet",
+  "top_function": "rv32i_comet_run",
+  "kernel": "rv32i_comet_kernel.c",
+  "testbench": [
+    "main_rv32i_comet.c"
+  ],
+  "target_clock_period_ps": 30000,
+  "bitfield_reconstruction": true,
+  "speculative_loads": true,
+  "array_as_value": true,
+  "array_value_memory_defaults": true
+}

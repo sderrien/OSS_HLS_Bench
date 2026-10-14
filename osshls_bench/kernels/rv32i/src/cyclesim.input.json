@@ -1,0 +1,36 @@
+{
+  "task": "cpu_run",
+  "scalars": {
+    "init_pc": 0
+  },
+  "memories": {
+    "instr_mem": {
+      "shape": [4096],
+      "data": [],
+      "default": 0
+    },
+    "mem0": {
+      "shape": [4096],
+      "data": [],
+      "default": 0
+    },
+    "mem1": {
+      "shape": [4096],
+      "data": [],
+      "default": 0
+    },
+    "mem2": {
+      "shape": [4096],
+      "data": [],
+      "default": 0
+    },
+    "mem3": {
+      "shape": [4096],
+      "data": [],
+      "default": 0
+    }
+  },
+  "options": {
+    "max_cycles": 2000000
+  }
+}

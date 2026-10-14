@@ -1,0 +1,9 @@
+{
+  "project_name": "iterative_sqrt",
+  "top_function": "iterative_sqrt",
+  "kernel": "iterative_sqrt.c",
+  "testbench": [
+    "main_iterative_sqrt.c"
+  ],
+  "target_clock_period_ps": 8000
+}

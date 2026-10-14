@@ -1,0 +1,9 @@
+{
+  "project_name": "matmul_unroll_part_x4x4",
+  "top_function": "matmul_unroll_part_x4",
+  "kernel": "matmul_kernel.c",
+  "testbench": [
+    "main_matmul.c"
+  ],
+  "target_clock_period_ps": 8000
+}

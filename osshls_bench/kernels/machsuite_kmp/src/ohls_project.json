@@ -1,0 +1,9 @@
+{
+  "project_name": "machsuite_kmp",
+  "top_function": "kmp",
+  "kernel": "kmp.c",
+  "testbench": [
+    "main.c"
+  ],
+  "target_clock_period_ps": 8000
+}

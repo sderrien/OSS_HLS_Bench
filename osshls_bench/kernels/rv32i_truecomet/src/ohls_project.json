@@ -1,0 +1,15 @@
+{
+  "project_name": "rv32i-truecomet",
+  "top_function": "rv32i_true_comet_run",
+  "kernel": "rv32i_true_comet.c",
+  "testbench": [
+    "main_rv32i_true_comet.cpp"
+  ],
+  "target_clock_period_ps": 20000,
+  "compile_defines": [
+    "OPENHLS"
+  ],
+  "global_comb_resynthesis": true,
+  "global_comb_equivalence_check": false,
+  "bitfield_reconstruction": true
+}

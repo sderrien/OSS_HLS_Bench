@@ -1,0 +1,78 @@
+services:
+  # The dedicated LegUp Dockerfile builds the legacy LegUp image.  LegUp's
+  # launcher invokes Docker itself, so this service is mainly useful for
+  # inspecting or entering the already-built tool image.
+  legup:
+    build:
+      context: .
+      dockerfile: docker/legup/Dockerfile
+    image: legup14:latest
+    profiles: [legup]
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - ./artifacts:/workspace/artifacts
+
+  bambu:
+    build:
+      context: docker/bambu
+      dockerfile: Dockerfile
+    image: hls-legup/bambu:22.04
+    working_dir: /workspace
+    environment:
+      HLS_BENCHMARKS_ROOT: /workspace/osshls_bench/kernels
+      HLS_ARTIFACTS_ROOT: /workspace/artifacts
+      BAMBU: ${BAMBU:-bambu}
+      VIVADO: ${VIVADO:-vivado}
+    volumes:
+      - .:/workspace
+      - ${BAMBU_ROOT:-/opt/bambu}:/opt/bambu:ro
+      - ${VIVADO_ROOT:-/opt/Xilinx}:/opt/Xilinx:ro
+
+  dynamatic:
+    build:
+      context: docker/dynamatic
+      dockerfile: Dockerfile
+    image: hls-legup/dynamatic:22.04
+    working_dir: /workspace
+    environment:
+      HLS_BENCHMARKS_ROOT: /workspace/osshls_bench/kernels
+      HLS_ARTIFACTS_ROOT: /workspace/artifacts
+      DYNAMATIC_ROOT: ${DYNAMATIC_ROOT:-/opt/dynamatic}
+      VIVADO: ${VIVADO:-vivado}
+    volumes:
+      - .:/workspace
+      - ${DYNAMATIC_ROOT:-/opt/dynamatic}:/opt/dynamatic:ro
+      - ${VIVADO_ROOT:-/opt/Xilinx}:/opt/Xilinx:ro
+
+  openhls:
+    build:
+      context: docker/openhls
+      dockerfile: Dockerfile
+    image: hls-legup/openhls:22.04
+    working_dir: /workspace
+    environment:
+      HLS_BENCHMARKS_ROOT: /workspace/osshls_bench/kernels
+      HLS_ARTIFACTS_ROOT: /workspace/artifacts
+      OPENHLS_ROOT: ${OPENHLS_ROOT:-/opt/OpenHLS}
+      VHLS_CLI: ${VHLS_CLI:-/opt/OpenHLS/tools/bin/ohls-cli}
+      VIVADO: ${VIVADO:-vivado}
+    volumes:
+      - .:/workspace
+      - ${OPENHLS_ROOT:-/opt/OpenHLS}:/opt/OpenHLS:ro
+      - ${VIVADO_ROOT:-/opt/Xilinx}:/opt/Xilinx:ro
+
+  vitis:
+    build:
+      context: docker/vitis
+      dockerfile: Dockerfile
+    image: hls-legup/vitis:22.04
+    working_dir: /workspace
+    environment:
+      HLS_BENCHMARKS_ROOT: /workspace/osshls_bench/kernels
+      HLS_ARTIFACTS_ROOT: /workspace/artifacts
+      VITIS_HLS: ${VITIS_HLS:-vitis_hls}
+      VIVADO: ${VIVADO:-vivado}
+    volumes:
+      - .:/workspace
+      - ${VIVADO_ROOT:-/opt/Xilinx}:/opt/Xilinx:ro

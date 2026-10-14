@@ -1,7 +1,7 @@
 """Run HLS benchmark tools in parallel and summarize normalized QoR.
 
 Role:
-Provide the implementation behind ``hls-bench.py parallel``.  The module launches
+Provide the implementation behind ``python -m hls_bench.cli parallel``.  The module launches
 one isolated subprocess per selected ``(tool, benchmark)`` pair, keeps each tool's
 JSON/log outputs separate to avoid report-file races, enforces a per-job timeout,
 and prints progress as jobs start, finish, fail, or time out.
@@ -35,27 +35,28 @@ import time
 from typing import Any
 import xml.etree.ElementTree as ET
 
-from hls_bench import loop_labels, paths
+from hls_bench import config, loop_labels, paths
 
 REPO_ROOT = paths.REPO_ROOT
+CLI = REPO_ROOT / "hls_bench" / "cli.py"
 DEFAULT_BENCHMARKS = ["spmv", "dotprod", "matmul", "gcd", "passthrough", "histogram", "iir", "iterative_sqrt", "lbm", "qr_givens", "rv32i", "rv32i_comet"]
 DEFAULT_TOOLS = ["legup", "bambu", "dynamatic", "vitis", "openhls"]
 SUPPORTED_TOOLS = ["legup", "bambu", "dynamatic", "vitis", "openhls"]
 DEFAULT_CLOCK_PERIOD_NS = 10.0
 DEFAULT_TIMEOUT_SECONDS = 600.0
-DEFAULT_VIVADO = "/opt/Xilinx/Xilinx/Vivado/2023.2/bin/vivado"
-DEFAULT_BAMBU = "/home/s/sderrien3/.local/bin/bambu"
+DEFAULT_VIVADO = config.VIVADO
+DEFAULT_BAMBU = config.BAMBU
 DEFAULT_BAMBU_DEVICE = "xc7a100t,-1,csg324,VVD"
 DEFAULT_DYNAMATIC_PART = "xc7a100tcsg324-1"
 DEFAULT_DYNAMATIC_FP_UNITS_GENERATOR = "vivado"
 DEFAULT_DYNAMATIC_SIMULATOR = "xsim"
-DEFAULT_VITIS_HLS = "/opt/Xilinx/Xilinx/Vitis_HLS/2023.2/bin/vitis_hls"
+DEFAULT_VITIS_HLS = config.VITIS_HLS
 DEFAULT_VITIS_PART = "xc7a100tcsg324-1"
 LOOP_II_TOOLS = ("legup", "bambu", "dynamatic", "vitis", "openhls")
-DEFAULT_VHLS_CLI = "/home/s/sderrien3/OpenHLS/tools/bin/ohls-cli"
+DEFAULT_VHLS_CLI = config.VHLS_CLI
 DEFAULT_OPENHLS_PART = "xc7a100tcsg324-1"
-DEFAULT_OPENHLS_LLVM_BIN = "/home/s/sderrien3/.local/build/llvm22-project/bin"
-DEFAULT_OPENHLS_CIRCT_BIN = "/home/s/sderrien3/.local/build/llvm22-project/bin"
+DEFAULT_OPENHLS_LLVM_BIN = str(config.OPENHLS_LLVM_BIN)
+DEFAULT_OPENHLS_CIRCT_BIN = str(config.OPENHLS_CIRCT_BIN)
 ARTIX7_A100T_CAPACITY = {
     "lut": 63400.0,
     "ff": 126800.0,
@@ -217,7 +218,7 @@ def build_legup_job(args: argparse.Namespace, benchmark: str, run_dir: Path) -> 
     qor = paths.LEGUP_WORK_ROOT / f"legup_qor_{benchmark}.json"
     command = [
         sys.executable,
-        "osshls_bench/tools/legup/run.py",
+        str(REPO_ROOT / "hls_bench" / "legup_runner.py"),
         "--bench",
         benchmark,
         "--period",
@@ -261,7 +262,9 @@ def build_bambu_job(args: argparse.Namespace, benchmark: str, run_dir: Path) -> 
     report = paths.BAMBU_WORK_ROOT / f"bambu_report_{benchmark}.json"
     command = [
         sys.executable,
-        "osshls_bench/tools/panda/run.py",
+        str(CLI),
+        "bambu",
+        "--",
         "--benchmarks",
         benchmark,
         "--bambu",
@@ -293,7 +296,7 @@ def build_dynamatic_job(args: argparse.Namespace, benchmark: str, run_dir: Path)
     report = paths.DYNAMATIC_WORK_ROOT / f"dynamatic_run_{benchmark}.json"
     command = [
         sys.executable,
-        "osshls_bench/hls-bench.py",
+        str(CLI),
         "dynamatic",
         "--bench",
         benchmark,
@@ -335,7 +338,7 @@ def build_vitis_job(args: argparse.Namespace, benchmark: str, run_dir: Path) -> 
     report = paths.VITIS_WORK_ROOT / f"vitis_run_{benchmark}.json"
     command = [
         sys.executable,
-        "osshls_bench/hls-bench.py",
+        str(CLI),
         "vitis",
         "--bench",
         benchmark,
@@ -377,7 +380,7 @@ def build_openhls_job(args: argparse.Namespace, benchmark: str, run_dir: Path) -
     report = paths.OPENHLS_WORK_ROOT / f"openhls_run_{benchmark}.json"
     command = [
         sys.executable,
-        "osshls_bench/hls-bench.py",
+        str(CLI),
         "openhls",
         "--bench",
         benchmark,

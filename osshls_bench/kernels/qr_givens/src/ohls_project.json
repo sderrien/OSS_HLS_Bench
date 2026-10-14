@@ -1,0 +1,9 @@
+{
+  "project_name": "qr_givens",
+  "top_function": "qr_givens",
+  "kernel": "qr_givens.c",
+  "testbench": [
+    "main.c"
+  ],
+  "target_clock_period_ps": 8000
+}

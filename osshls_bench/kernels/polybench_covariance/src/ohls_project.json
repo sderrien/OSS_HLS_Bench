@@ -1,0 +1,9 @@
+{
+  "project_name": "polybench_covariance",
+  "top_function": "polybench_covariance",
+  "kernel": "polybench_covariance_kernel.c",
+  "testbench": [
+    "main_polybench_covariance.c"
+  ],
+  "target_clock_period_ps": 8000
+}

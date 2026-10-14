@@ -1,0 +1,7 @@
+{
+  "project_name": "iir",
+  "top_function": "iir",
+  "kernel": "iir.c",
+  "testbench": [],
+  "target_clock_period_ps": 8000
+}

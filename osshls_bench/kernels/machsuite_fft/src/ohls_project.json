@@ -1,0 +1,9 @@
+{
+  "project_name": "machsuite_fft",
+  "top_function": "fft8",
+  "kernel": "fft.c",
+  "testbench": [
+    "main.c"
+  ],
+  "target_clock_period_ps": 8000
+}

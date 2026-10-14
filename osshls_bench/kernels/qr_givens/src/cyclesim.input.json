@@ -1,0 +1,19 @@
+{
+  "task": "qr_givens",
+  "scalars": {},
+  "memories": {
+    "a": {
+    "shape": [64, 64],
+      "data": [],
+      "default": 0
+    },
+    "r": {
+    "shape": [64, 64],
+      "data": [],
+      "default": 0
+    }
+  },
+  "options": {
+    "max_cycles": 1000000
+  }
+}

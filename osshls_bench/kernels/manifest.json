@@ -1,0 +1,355 @@
+{
+  "kernels": {
+    "dct2d_chen": {
+      "kernel": "dct2d_chen_kernel.c",
+      "project_name": "dct2d_chen",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_dct2d_chen.c",
+        "dct2d_chen_trace_stubs.c"
+      ],
+      "top_function": "dct2d_chen"
+    },
+    "dotprod": {
+      "kernel": "dotprod_kernel.c",
+      "project_name": "dotprod",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_dotprod.c"
+      ],
+      "top_function": "dotprod"
+    },
+    "earlyexit": {
+      "kernel": "earlyexit_kernel.c",
+      "project_name": "earlyexit",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_earlyexit.c"
+      ],
+      "top_function": "hb_cfg_switch_early_exit"
+    },
+    "ekf2_px4": {
+      "kernel": "ekf2_px4_kernel.c",
+      "project_name": "ekf2_px4",
+      "target_clock_period_ps": 10000,
+      "testbench": [
+        "main_ekf2_px4.c"
+      ],
+      "top_function": "ekf2_px4"
+    },
+    "eth_tcpip_stack": {
+      "kernel": "eth_tcpip_stack.c",
+      "project_name": "eth_tcpip_stack",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c"
+      ],
+      "top_function": "eth_tcpip_stack"
+    },
+    "exp_cordic": {
+      "kernel": "exp_cordic_kernel.c",
+      "project_name": "exp_cordic",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_exp_cordic.c"
+      ],
+      "top_function": "cordic_exp_q15"
+    },
+    "fir8_stream": {
+      "kernel": "fir8_stream_kernel.cpp",
+      "project_name": "fir8_stream",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_fir8_stream.cpp",
+        "ohls_stream_sim.cpp"
+      ],
+      "top_function": "fir8_stream"
+    },
+    "gcd": {
+      "kernel": "gcd_kernel.c",
+      "project_name": "gcd",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_gcd.c"
+      ],
+      "top_function": "gcd"
+    },
+    "histogram": {
+      "kernel": "histogram.c",
+      "project_name": "histogram",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c"
+      ],
+      "top_function": "histogram"
+    },
+    "iterative_sqrt": {
+      "kernel": "iterative_sqrt.c",
+      "project_name": "iterative_sqrt",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_iterative_sqrt.c"
+      ],
+      "top_function": "iterative_sqrt"
+    },
+    "kalman_5x5_accel": {
+      "kernel": "kalman_5x5_accel_kernel.cpp",
+      "project_name": "kalman_5x5_accel",
+      "target_clock_period_ps": 10000,
+      "testbench": [
+        "main_kalman_5x5_accel.cpp"
+      ],
+      "top_function": "kalman_5x5_accel"
+    },
+    "lbm": {
+      "kernel": "lbm_kernel.c",
+      "project_name": "lbm",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_lbm.c"
+      ],
+      "top_function": "lbm"
+    },
+    "machsuite_aes": {
+      "kernel": "aes.c",
+      "project_name": "machsuite_aes",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c"
+      ],
+      "top_function": "aes"
+    },
+    "machsuite_bfs": {
+      "kernel": "bfs.c",
+      "project_name": "machsuite_bfs",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c"
+      ],
+      "top_function": "bfs"
+    },
+    "machsuite_fft": {
+      "kernel": "fft.c",
+      "project_name": "machsuite_fft",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c"
+      ],
+      "top_function": "fft8"
+    },
+    "machsuite_kmp": {
+      "kernel": "kmp.c",
+      "project_name": "machsuite_kmp",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c"
+      ],
+      "top_function": "kmp"
+    },
+    "machsuite_rsa": {
+      "kernel": "rsa.c",
+      "project_name": "machsuite_rsa",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c"
+      ],
+      "top_function": "rsa_encrypt"
+    },
+    "matmul": {
+      "kernel": "matmul_kernel.c",
+      "project_name": "matmul",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_matmul.c"
+      ],
+      "top_function": "matmul"
+    },
+    "matmul_ijk_unroll_part_x4": {
+      "kernel": "matmul_ijk_unroll_part_x4.c",
+      "project_name": "matmul_ijk_unroll_part_x4",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_matmul_ijk_unroll_part_x4.c"
+      ],
+      "top_function": "matmul_ijk_unroll_part_x4"
+    },
+    "matmul_ikj_unroll_part_x4": {
+      "kernel": "matmul_kernel.c",
+      "project_name": "matmul_ikj_unroll_part_x4",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_matmul.c"
+      ],
+      "top_function": "matmul_ikj_unroll_part_x4"
+    },
+    "matmul_unroll_part_x4x4": {
+      "kernel": "matmul_kernel.c",
+      "project_name": "matmul_unroll_part_x4x4",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_matmul.c"
+      ],
+      "top_function": "matmul_unroll_part_x4"
+    },
+    "mnist_cnn": {
+      "kernel": "mnist_cnn_kernel.c",
+      "project_name": "mnist_cnn",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_mnist_cnn.c",
+        "mnist_cnn_trace_stubs.c"
+      ],
+      "top_function": "mnist_cnn"
+    },
+    "passthrough": {
+      "kernel": "passthrough_kernel.c",
+      "project_name": "passthrough",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_passthrough.c"
+      ],
+      "top_function": "passthrough"
+    },
+    "polybench_atax": {
+      "kernel": "polybench_atax_kernel.c",
+      "project_name": "polybench_atax",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_polybench_atax.c"
+      ],
+      "top_function": "polybench_atax"
+    },
+    "polybench_cholesky": {
+      "kernel": "polybench_cholesky_kernel.c",
+      "project_name": "polybench_cholesky",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_polybench_cholesky.c"
+      ],
+      "top_function": "polybench_cholesky"
+    },
+    "polybench_covariance": {
+      "kernel": "polybench_covariance_kernel.c",
+      "project_name": "polybench_covariance",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_polybench_covariance.c"
+      ],
+      "top_function": "polybench_covariance"
+    },
+    "polybench_deriche": {
+      "kernel": "polybench_deriche_kernel.c",
+      "project_name": "polybench_deriche",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_polybench_deriche.c"
+      ],
+      "top_function": "polybench_deriche"
+    },
+    "polybench_floyd_warshall": {
+      "kernel": "polybench_floyd_warshall_kernel.c",
+      "project_name": "polybench_floyd_warshall",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_polybench_floyd_warshall.c"
+      ],
+      "top_function": "polybench_floyd_warshall"
+    },
+    "polybench_heat_3d": {
+      "kernel": "polybench_heat_3d_kernel.c",
+      "project_name": "polybench_heat_3d",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_polybench_heat_3d.c"
+      ],
+      "top_function": "polybench_heat_3d"
+    },
+    "polybench_lu": {
+      "kernel": "polybench_lu_kernel.c",
+      "project_name": "polybench_lu",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_polybench_lu.c"
+      ],
+      "top_function": "polybench_lu"
+    },
+    "polybench_mvt": {
+      "kernel": "polybench_mvt_kernel.c",
+      "project_name": "polybench_mvt",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_polybench_mvt.c"
+      ],
+      "top_function": "polybench_mvt"
+    },
+    "polybench_trmm": {
+      "kernel": "polybench_trmm_kernel.c",
+      "project_name": "polybench_trmm",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_polybench_trmm.c"
+      ],
+      "top_function": "polybench_trmm"
+    },
+    "qr_givens": {
+      "kernel": "qr_givens.c",
+      "project_name": "qr_givens",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c"
+      ],
+      "top_function": "qr_givens"
+    },
+    "rv32i": {
+      "kernel": "rv32i_kernel.cpp",
+      "project_name": "rv32i",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main_rv32i.cpp",
+        "mem_image.c",
+        "gcd_image.c",
+        "rv32i_ref_trace.cpp"
+      ],
+      "top_function": "cpu_run"
+    },
+    "rv32i_comet": {
+      "kernel": "rv32i_comet_kernel.c",
+      "project_name": "rv32i-comet",
+      "target_clock_period_ps": 30000,
+      "testbench": [
+        "main_rv32i_comet.c"
+      ],
+      "top_function": "rv32i_comet_run"
+    },
+    "rv32i_truecomet": {
+      "kernel": "rv32i_true_comet.c",
+      "project_name": "rv32i-truecomet",
+      "target_clock_period_ps": 20000,
+      "testbench": [
+        "main_rv32i_true_comet.cpp"
+      ],
+      "top_function": "rv32i_true_comet_run"
+    },
+    "sha256": {
+      "kernel": "sha256.c",
+      "project_name": "sha256",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c",
+        "sha256_ref.cpp",
+        "sha256_trace_stubs.c"
+      ],
+      "top_function": "sha256_block"
+    },
+    "spmv": {
+      "kernel": "spmv.c",
+      "project_name": "spmv",
+      "target_clock_period_ps": 8000,
+      "testbench": [
+        "main.c",
+        "spmv_trace_stubs.c"
+      ],
+      "top_function": "spmv"
+    }
+  }
+}

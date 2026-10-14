@@ -1,0 +1,9 @@
+{
+  "project_name": "polybench_lu",
+  "top_function": "polybench_lu",
+  "kernel": "polybench_lu_kernel.c",
+  "testbench": [
+    "main_polybench_lu.c"
+  ],
+  "target_clock_period_ps": 8000
+}

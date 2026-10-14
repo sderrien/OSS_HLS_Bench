@@ -1,0 +1,9 @@
+{
+  "project_name": "dotprod",
+  "top_function": "dotprod",
+  "kernel": "dotprod_kernel.c",
+  "testbench": [
+    "main_dotprod.c"
+  ],
+  "target_clock_period_ps": 8000
+}

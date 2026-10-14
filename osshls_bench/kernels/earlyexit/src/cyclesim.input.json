@@ -1,0 +1,16 @@
+{
+  "task": "hb_cfg_switch_early_exit",
+  "scalars": {
+    "key": 0
+  },
+  "memories": {
+    "a": {
+      "shape": [1024],
+      "data": [],
+      "default": 0
+    }
+  },
+  "options": {
+    "max_cycles": 1000000
+  }
+}

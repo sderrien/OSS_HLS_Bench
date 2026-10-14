@@ -1,0 +1,9 @@
+{
+  "project_name": "exp_cordic",
+  "top_function": "cordic_exp_q15",
+  "kernel": "exp_cordic_kernel.c",
+  "testbench": [
+    "main_exp_cordic.c"
+  ],
+  "target_clock_period_ps": 8000
+}

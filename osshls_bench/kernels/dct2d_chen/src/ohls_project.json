@@ -1,0 +1,10 @@
+{
+  "project_name": "dct2d_chen",
+  "top_function": "dct2d_chen",
+  "kernel": "dct2d_chen_kernel.c",
+  "testbench": [
+    "main_dct2d_chen.c",
+    "dct2d_chen_trace_stubs.c"
+  ],
+  "target_clock_period_ps": 8000
+}

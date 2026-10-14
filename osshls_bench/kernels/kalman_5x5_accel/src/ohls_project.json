@@ -1,0 +1,9 @@
+{
+  "project_name": "kalman_5x5_accel",
+  "top_function": "kalman_5x5_accel",
+  "kernel": "kalman_5x5_accel_kernel.cpp",
+  "testbench": [
+    "main_kalman_5x5_accel.cpp"
+  ],
+  "target_clock_period_ps": 10000
+}

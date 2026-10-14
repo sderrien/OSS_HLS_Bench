@@ -1,0 +1,19 @@
+{
+  "task": "sha256_block",
+  "scalars": {},
+  "memories": {
+    "block": {
+      "shape": [64],
+      "data": [],
+      "default": 0
+    },
+    "state": {
+      "shape": [16],
+      "data": [],
+      "default": 0
+    }
+  },
+  "options": {
+    "max_cycles": 1000000
+  }
+}

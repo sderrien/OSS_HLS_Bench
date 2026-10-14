@@ -1,0 +1,11 @@
+{
+  "project_name": "sha256",
+  "top_function": "sha256_block",
+  "kernel": "sha256.c",
+  "testbench": [
+    "main.c",
+    "sha256_ref.cpp",
+    "sha256_trace_stubs.c"
+  ],
+  "target_clock_period_ps": 8000
+}

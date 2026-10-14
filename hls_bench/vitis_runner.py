@@ -1,7 +1,7 @@
 """Run local Vitis HLS on repository benchmarks.
 
-Role:
-Discover benchmark kernels under ``./benchmarks``, stage each kernel with the
+    Role:
+    Discover benchmark kernels under the configured benchmark root, stage each kernel with the
 shared deterministic C testbench inputs, run Vitis HLS synthesis and optional RTL
 co-simulation, and emit native plus normalized QoR summaries.
 
@@ -33,6 +33,7 @@ from typing import Any
 import xml.etree.ElementTree as ET
 
 from hls_bench import inputs as common_inputs
+from hls_bench import config
 from hls_bench import loop_labels
 from hls_bench import paths
 from hls_bench import qor as common_qor
@@ -45,8 +46,8 @@ DEFAULT_SUMMARY = DEFAULT_WORK_ROOT / "vitis_run_all.json"
 DEFAULT_NORMALIZED_SUMMARY = DEFAULT_WORK_ROOT / "vitis_qor.json"
 DEFAULT_CLOCK_PERIOD_NS = 10.0
 DEFAULT_PART = "xc7a100tcsg324-1"
-DEFAULT_VITIS_HLS = "/opt/Xilinx/Xilinx/Vitis_HLS/2023.2/bin/vitis_hls"
-DEFAULT_VIVADO = "/opt/Xilinx/Xilinx/Vivado/2023.2/bin/vivado"
+DEFAULT_VITIS_HLS = config.VITIS_HLS
+DEFAULT_VIVADO = config.VIVADO
 CRT_LIBRARY_PATH = Path("/usr/lib/x86_64-linux-gnu")
 # RV32I exposes byte-addressed 16 MiB memories through 32-bit instruction words
 # and byte-lane data arrays, so every top-level pointer spans 2^22 entries.
@@ -167,7 +168,7 @@ def run(args: argparse.Namespace) -> list[VitisResult]:
     native JSON writing, normalized JSON writing, and console table output.
 
     Goal:
-    Provide one complete end-to-end entry point usable from both ``hls-bench.py
+    Provide one complete end-to-end entry point usable from both ``hls_bench.cli
     vitis`` and the parallel scheduler.
     """
 
@@ -201,7 +202,7 @@ def discover_jobs(work_root: Path, selected: set[str] | None) -> tuple[list[Viti
 
     Goal:
     Ensure Vitis HLS sees the same deterministic inputs as the other tool flows
-    without mutating files under ``./benchmarks``.
+    without mutating files under the configured benchmark root.
     """
 
     jobs: list[VitisJob] = []
@@ -376,7 +377,7 @@ def write_tcl(job: VitisJob, args: argparse.Namespace, *, run_synthesis: bool, r
     lines = [
         f"open_project -reset {{{job.project_dir}}}",
         f"set_top {job.top_function}",
-        f"add_files {{{job.staged_source}}}",
+        f"add_files -cflags \"{vitis_kernel_cflags(job)}\" {{{job.staged_source}}}",
         f"add_files -tb {{{job.testbench_source}}}",
         *[f"add_files -tb {{{source}}}" for source in job.extra_testbench_sources],
         "open_solution -reset solution1 -flow_target vivado",
@@ -396,6 +397,21 @@ def write_tcl(job: VitisJob, args: argparse.Namespace, *, run_synthesis: bool, r
         lines.append("cosim_design -rtl verilog -tool xsim")
     lines.append("exit")
     job.script.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def vitis_kernel_cflags(job: VitisJob) -> str:
+    """Return source-specific Vitis compiler definitions.
+
+    Role:
+    Mark TrueComet's staged kernel as the Vitis implementation before APCC
+    compiles it; testbench compilation is intentionally unaffected.
+
+    Goal:
+    Select the explicit 1/2/4-byte memory path that avoids Vitis's variable
+    memcpy lowering while keeping every other benchmark's source unchanged.
+    """
+
+    return "-DVITIS" if job.name == "rv32i_truecomet" else ""
 
 
 def vitis_directives(job: VitisJob) -> list[str]:
@@ -609,7 +625,7 @@ def translate_source_for_vitis(source: Path, staged_source: Path) -> None:
 
     Goal:
     Let the runner provide top-function selection through Tcl ``set_top`` without
-    mutating ``./benchmarks`` or hiding real kernel computation failures.
+    mutating the benchmark source tree or hiding real kernel computation failures.
     """
 
     filtered: list[str] = []

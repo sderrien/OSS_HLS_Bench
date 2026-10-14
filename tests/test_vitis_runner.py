@@ -44,3 +44,19 @@ def test_rv32i_one_port_memories_preserve_explicit_depth() -> None:
     assert len(directives) == 5
     assert all("-storage_type ram_1p" in directive for directive in directives)
     assert all(f"-depth {vitis_runner.RV32I_MEMORY_ELEMENTS}" in directive for directive in directives)
+
+
+def test_truecomet_vitis_kernel_is_compiled_with_explicit_memory_path() -> None:
+    """Pass VITIS to APCC for TrueComet's staged kernel.
+
+    Role:
+    Inspect the focused source compile flags independently of Vitis HLS.
+
+    Goal:
+    Prevent a runner regression that leaves the source's Vitis byte-access path
+    inactive while the benchmark appears to have tool-specific source support.
+    """
+
+    job = SimpleNamespace(name="rv32i_truecomet")
+
+    assert vitis_runner.vitis_kernel_cflags(job) == "-DVITIS"

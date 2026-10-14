@@ -1,0 +1,9 @@
+{
+  "project_name": "machsuite_bfs",
+  "top_function": "bfs",
+  "kernel": "bfs.c",
+  "testbench": [
+    "main.c"
+  ],
+  "target_clock_period_ps": 8000
+}

@@ -1,0 +1,9 @@
+{
+  "project_name": "earlyexit",
+  "top_function": "hb_cfg_switch_early_exit",
+  "kernel": "earlyexit_kernel.c",
+  "testbench": [
+    "main_earlyexit.c"
+  ],
+  "target_clock_period_ps": 8000
+}

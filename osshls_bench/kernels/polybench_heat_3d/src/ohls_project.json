@@ -1,0 +1,9 @@
+{
+  "project_name": "polybench_heat_3d",
+  "top_function": "polybench_heat_3d",
+  "kernel": "polybench_heat_3d_kernel.c",
+  "testbench": [
+    "main_polybench_heat_3d.c"
+  ],
+  "target_clock_period_ps": 8000
+}

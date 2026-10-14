@@ -1,0 +1,9 @@
+{
+  "project_name": "histogram",
+  "top_function": "histogram",
+  "kernel": "histogram.c",
+  "testbench": [
+    "main.c"
+  ],
+  "target_clock_period_ps": 8000
+}

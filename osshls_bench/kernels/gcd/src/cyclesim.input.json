@@ -1,0 +1,6 @@
+{
+  "task": "gcd",
+  "scalars": {"a": 48, "b": 18},
+  "memories": {},
+  "options": {"max_cycles": 200000}
+}

@@ -1,0 +1,9 @@
+{
+  "project_name": "passthrough",
+  "top_function": "passthrough",
+  "kernel": "passthrough_kernel.c",
+  "testbench": [
+    "main_passthrough.c"
+  ],
+  "target_clock_period_ps": 8000
+}

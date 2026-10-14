@@ -1,0 +1,9 @@
+{
+  "project_name": "machsuite_aes",
+  "top_function": "aes",
+  "kernel": "aes.c",
+  "testbench": [
+    "main.c"
+  ],
+  "target_clock_period_ps": 8000
+}

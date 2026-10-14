@@ -1,0 +1,9 @@
+{
+  "project_name": "polybench_deriche",
+  "top_function": "polybench_deriche",
+  "kernel": "polybench_deriche_kernel.c",
+  "testbench": [
+    "main_polybench_deriche.c"
+  ],
+  "target_clock_period_ps": 8000
+}

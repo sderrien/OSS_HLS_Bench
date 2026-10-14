@@ -1,0 +1,16 @@
+{
+  "project_name": "rv32i",
+  "top_function": "cpu_run",
+  "kernel": "rv32i_kernel.cpp",
+  "testbench": [
+    "main_rv32i.cpp",
+    "mem_image.c",
+    "gcd_image.c",
+    "rv32i_ref_trace.cpp"
+  ],
+  "target_clock_period_ps": 20000,
+  "bitfield_reconstruction": true,
+  "speculative_loads": true,
+  "array_as_value": true,
+  "array_value_memory_defaults": true
+}

@@ -1,0 +1,10 @@
+{
+  "task": "cordic_exp_q15",
+  "scalars": {
+    "x": 0
+  },
+  "memories": {},
+  "options": {
+    "max_cycles": 1000000
+  }
+}

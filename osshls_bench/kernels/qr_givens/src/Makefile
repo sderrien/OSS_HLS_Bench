@@ -1,0 +1,7 @@
+KERNEL := qr_givens.c
+TESTBENCH := main.c
+OUTPUT_BASE := qr_givens
+RTL_RUNTIME_CFLAGS += -DQR_GIVENS_RTL_RUNTIME
+RTL_RUNTIME_CFLAGS += -DOHLS_RTL_MEM_WRAP_WORDS=1088
+
+include ../../vibe-hls.mk

@@ -1,0 +1,9 @@
+{
+  "project_name": "polybench_floyd_warshall",
+  "top_function": "polybench_floyd_warshall",
+  "kernel": "polybench_floyd_warshall_kernel.c",
+  "testbench": [
+    "main_polybench_floyd_warshall.c"
+  ],
+  "target_clock_period_ps": 8000
+}

@@ -1,0 +1,10 @@
+{
+  "project_name": "fir8_stream",
+  "top_function": "fir8_stream",
+  "kernel": "fir8_stream_kernel.cpp",
+  "testbench": [
+    "main_fir8_stream.cpp",
+    "ohls_stream_sim.cpp"
+  ],
+  "target_clock_period_ps": 8000
+}

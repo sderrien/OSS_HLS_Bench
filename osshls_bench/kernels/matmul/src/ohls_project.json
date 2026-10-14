@@ -1,0 +1,9 @@
+{
+  "project_name": "matmul",
+  "top_function": "matmul",
+  "kernel": "matmul_kernel.c",
+  "testbench": [
+    "main_matmul.c"
+  ],
+  "target_clock_period_ps": 8000
+}

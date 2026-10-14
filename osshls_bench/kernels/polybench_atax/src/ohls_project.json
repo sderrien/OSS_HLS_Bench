@@ -1,0 +1,9 @@
+{
+  "project_name": "polybench_atax",
+  "top_function": "polybench_atax",
+  "kernel": "polybench_atax_kernel.c",
+  "testbench": [
+    "main_polybench_atax.c"
+  ],
+  "target_clock_period_ps": 8000
+}

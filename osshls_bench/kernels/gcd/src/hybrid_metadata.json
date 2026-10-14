@@ -1,0 +1,29 @@
+{
+  "task": "gcd",
+  "interfaces": [
+    {
+      "name": "a",
+      "category": "io",
+      "direction": "in",
+      "c_type": "int32_t"
+    },
+    {
+      "name": "b",
+      "category": "io",
+      "direction": "in",
+      "c_type": "int32_t"
+    },
+    {
+      "name": "ret0",
+      "category": "io",
+      "direction": "out",
+      "c_type": "int32_t"
+    },
+    {
+      "name": "done",
+      "category": "io",
+      "direction": "out",
+      "c_type": "int8_t"
+    }
+  ]
+}

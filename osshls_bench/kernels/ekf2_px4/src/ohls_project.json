@@ -1,0 +1,9 @@
+{
+  "project_name": "ekf2_px4",
+  "top_function": "ekf2_px4",
+  "kernel": "ekf2_px4_kernel.c",
+  "testbench": [
+    "main_ekf2_px4.c"
+  ],
+  "target_clock_period_ps": 10000
+}

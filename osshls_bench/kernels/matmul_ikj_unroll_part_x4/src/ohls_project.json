@@ -1,0 +1,24 @@
+{
+  "project_name": "matmul_ikj_unroll_part_x4",
+  "top_function": "matmul_ikj_unroll_part_x4",
+  "kernel": "matmul_kernel.c",
+  "testbench": [
+    "main_matmul.c"
+  ],
+  "target_clock_period_ps": 8000,
+  "synthesis": {
+    "mode": "remote",
+    "vivado_bin": "vivado",
+    "vitis_hls_bin": "vitis_hls",
+    "remote": {
+      "host": "edith.univ-brest.fr",
+      "user": "sderrien3",
+      "work_dir": "/tmp/ohls-synth",
+      "transport": "rsync",
+      "setup": ". /tools/Xilinx/Vivado/2023.2/settings64.sh && . /tools/Xilinx/Vitis_HLS/2023.2/settings64.sh",
+      "ssh": "ssh",
+      "scp": "scp",
+      "rsync": "rsync"
+    }
+  }
+}
